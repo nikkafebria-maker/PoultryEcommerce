@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeatherFarm - Poultry E-Commerce & Management</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        amber: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-brand-900 text-white sticky top-0 z-40 shadow-lg border-b border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('storefront')">
+                    <div class="bg-amber-500 text-brand-900 p-2.5 rounded-xl shadow-md font-bold text-2xl flex items-center justify-center">
+                        <i class="fa-solid font-bold fa-feather-pointed"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight block leading-none">FeatherFarm</span>
+                        <span class="text-xs text-amber-400 tracking-widest uppercase font-semibold">Poultry E-Commerce</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <button id="nav-storefront" onclick="switchTab('storefront')" class="px-4 py-2 rounded-lg font-medium text-sm transition-all bg-brand-800 text-white shadow-inner flex items-center gap-2">
+                        <i class="fa-solid fa-store"></i> <span class="hidden sm:inline">Storefront</span>
+                    </button>
+                    <button id="nav-admin" onclick="switchTab('admin')" class="px-4 py-2 rounded-lg font-medium text-sm transition-all text-stone-300 hover:text-white hover:bg-brand-800/50 flex items-center gap-2">
+                        <i class="fa-solid fa-gauge-high"></i> <span class="hidden sm:inline">Admin Dashboard</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- STOREFRONT SECTION -->
+    <div id="section-storefront" class="flex-grow">
+        <!-- 1. HOMEPAGE HERO SECTION -->
+        <section class="relative bg-gradient-to-r from-brand-900 via-brand-800 to-emerald-900 text-white py-16 px-4 sm:px-6 lg:px-8 shadow-inner overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <span class="inline-block bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
+                        Premium Quality Poultry
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
+                        Healthy & High-Yield Chickens Direct From Farm
+                    </h1>
+                    <p class="text-stone-200 text-base sm:text-lg mb-8 max-w-xl">
+                        Specializing in heritage, dual-purpose, and layer chickens. Categorized precisely by age with fully verified vaccination and health records.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#catalog" class="bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold px-6 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                            Browse Catalog <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <button onclick="switchTab('admin')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 backdrop-blur-sm transition-all">
+                            Manage Inventory
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden md:grid grid-cols-2 gap-4">
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center">
+                        <i class="fa-solid fa-shield-halved text-amber-400 text-3xl mb-2"></i>
+                        <h3 class="font-bold text-lg">100% Vaccinated</h3>
+                        <p class="text-xs text-stone-300 mt-1">Strict health control protocols</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center">
+                        <i class="fa-solid fa-truck-fast text-amber-400 text-3xl mb-2"></i>
+                        <h3 class="font-bold text-lg">Safe Delivery</h3>
+                        <p class="text-xs text-stone-300 mt-1">Temperature-controlled transport</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center">
+                        <i class="fa-solid fa-egg text-amber-400 text-3xl mb-2"></i>
+                        <h3 class="font-bold text-lg">High Productivity</h3>
+                        <p class="text-xs text-stone-300 mt-1">Selected high-yield breeds</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-center">
+                        <i class="fa-solid fa-certificate text-amber-400 text-3xl mb-2"></i>
+                        <h3 class="font-bold text-lg">Certified Age</h3>
+                        <p class="text-xs text-stone-300 mt-1">4m, 5m, & 6m+ categories</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 & 3. CHICKEN CATEGORIES & PRODUCT LISTINGS -->
+        <section id="catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Section Header & Search Bar -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b border-stone-200 gap-4">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-stone-900 tracking-tight">Chicken Catalog</h2>
+                    <p class="text-stone-500 text-sm mt-1">Explore available breeds categorized by growth stage and age group.</p>
+                </div>
+
+                <div class="relative w-full md:w-72">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-sm"></i>
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Search breed or details..." class="w-full pl-10 pr-4 py-2.5 bg-white border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 shadow-sm">
+                </div>
+            </div>
+
+            <!-- Age Category Filter Pills -->
+            <div class="flex flex-wrap gap-2 mb-8">
+                <button onclick="setCategoryFilter('All')" id="filter-All" class="category-pill active-pill px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm bg-brand-700 text-white">
+                    All Ages
+                </button>
+                <button onclick="setCategoryFilter('4-month-old')" id="filter-4-month-old" class="category-pill inactive-pill px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm bg-white text-stone-600 hover:bg-stone-100 border border-stone-200">
+                    4-Month-Old
+                </button>
+                <button onclick="setCategoryFilter('5-month-old')" id="filter-5-month-old" class="category-pill inactive-pill px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm bg-white text-stone-600 hover:bg-stone-100 border border-stone-200">
+                    5-Month-Old
+                </button>
+                <button onclick="setCategoryFilter('6-month-old+')" id="filter-6-month-old+" class="category-pill inactive-pill px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm bg-white text-stone-600 hover:bg-stone-100 border border-stone-200">
+                    6-Month-Old & Older
+                </button>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic cards rendered here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-16 bg-white rounded-2xl border border-stone-200 p-8">
+                <i class="fa-solid fa-feather text-stone-300 text-5xl mb-4"></i>
+                <h3 class="text-xl font-bold text-stone-700">No chickens match your criteria</h3>
+                <p class="text-stone-500 text-sm mt-1">Try selecting a different category or clearing your search term.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- 5. ADMIN DASHBOARD SECTION -->
+    <div id="section-admin" class="hidden flex-grow bg-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-stone-900 tracking-tight">Admin Dashboard</h1>
+                    <p class="text-stone-500 text-sm mt-1">Manage listings, prices, categories, and inventory in real time.</p>
+                </div>
+                <button onclick="openAddModal()" class="bg-brand-700 hover:bg-brand-800 text-white font-bold px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-plus"></i> Add New Chicken Listing
+                </button>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-bold text-stone-400 uppercase tracking-wider">Total Listings</p>
+                        <h3 id="stat-total-listings" class="text-3xl font-black text-stone-800 mt-1">0</h3>
+                    </div>
+                    <div class="p-3 bg-brand-50 text-brand-700 rounded-xl"><i class="fa-solid fa-list-check text-2xl"></i></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-bold text-stone-400 uppercase tracking-wider">Total Head Count</p>
+                        <h3 id="stat-total-stock" class="text-3xl font-black text-stone-800 mt-1">0</h3>
+                    </div>
+                    <div class="p-3 bg-amber-50 text-amber-600 rounded-xl"><i class="fa-solid fa-warehouse text-2xl"></i></div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-bold text-stone-400 uppercase tracking-wider">Inventory Value</p>
+                        <h3 id="stat-total-value" class="text-3xl font-black text-stone-800 mt-1">₱0</h3>
+                    </div>
+                    <div class="p-3 bg-emerald-50 text-emerald-700 rounded-xl"><i class="fa-solid fa-coins text-2xl"></i></div>
+                </div>
+            </div>
+
+            <!-- Inventory Management Table -->
+            <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-stone-200 bg-stone-50/50 flex justify-between items-center">
+                    <h3 class="font-bold text-stone-800">Chicken Listings Directory</h3>
+                    <span id="inventory-count-tag" class="text-xs bg-stone-200 text-stone-700 px-2.5 py-1 rounded-full font-semibold">0 items</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-stone-50 text-stone-500 uppercase text-xs font-bold tracking-wider border-b border-stone-200">
+                                <th class="py-3.5 px-6">Product</th>
+                                <th class="py-3.5 px-6">Category</th>
+                                <th class="py-3.5 px-6">Price</th>
+                                <th class="py-3.5 px-6">Stock</th>
+                                <th class="py-3.5 px-6 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="divide-y divide-stone-200 text-sm text-stone-700">
+                            <!-- Dynamic Rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. PRODUCT DETAILS MODAL -->
+    <div id="detail-modal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-stone-100">
+            <div class="relative h-64 bg-stone-100">
+                <img id="modal-img" src="" alt="Chicken detail" class="w-full h-full object-cover">
+                <button onclick="closeDetailModal()" class="absolute top-4 right-4 bg-stone-900/70 hover:bg-stone-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="absolute bottom-4 left-4 flex gap-2">
+                    <span id="modal-category" class="bg-brand-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md uppercase"></span>
+                    <span id="modal-stock-badge" class="text-xs font-bold px-3 py-1.5 rounded-lg shadow-md uppercase"></span>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h2 id="modal-breed" class="text-2xl font-black text-stone-900"></h2>
+                        <p id="modal-purpose" class="text-xs font-semibold text-brand-700 uppercase tracking-wider mt-1"></p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-stone-400 block font-semibold uppercase">Unit Price</span>
+                        <span id="modal-price" class="text-2xl font-black text-amber-600"></span>
+                    </div>
+                </div>
+
+                <p id="modal-description" class="text-stone-600 text-sm leading-relaxed mb-6"></p>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-stone-50 p-4 rounded-2xl border border-stone-200 mb-6 text-center">
+                    <div>
+                        <span class="text-xs text-stone-400 block font-medium">Exact Age</span>
+                        <span id="modal-age" class="font-bold text-stone-800 text-sm"></span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-stone-400 block font-medium">Vaccination</span>
+                        <span id="modal-vaccine" class="font-bold text-emerald-700 text-sm"></span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-stone-400 block font-medium">Stock Left</span>
+                        <span id="modal-stock" class="font-bold text-stone-800 text-sm"></span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-stone-400 block font-medium">Temperament</span>
+                        <span id="modal-temperament" class="font-bold text-stone-800 text-sm"></span>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3">
+                    <button onclick="closeDetailModal()" class="px-5 py-2.5 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-xl font-bold text-sm transition-all">
+                        Close
+                    </button>
+                    <button onclick="alert('Order inquiry registered! Thank you.')" class="px-6 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl font-bold text-sm shadow-md transition-all">
+                        Inquire Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORM MODAL (ADD / EDIT LISTING) -->
+    <div id="form-modal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-stone-100 p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 border-b border-stone-200 pb-4">
+                <h2 id="form-modal-title" class="text-xl font-black text-stone-900">Add New Chicken Listing</h2>
+                <button onclick="closeFormModal()" class="text-stone-400 hover:text-stone-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <form id="chicken-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <input type="hidden" id="form-id">
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Breed Name</label>
+                    <input type="text" id="form-breed" required placeholder="e.g. Rhode Island Red" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Category (Age)</label>
+                        <select id="form-category" required class="w-full px-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                            <option value="4-month-old">4-Month-Old</option>
+                            <option value="5-month-old">5-Month-Old</option>
+                            <option value="6-month-old+">6-Month-Old & Older</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Price (PHP ₱)</label>
+                        <input type="number" id="form-price" required min="0" step="0.01" placeholder="450" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Available Stock</label>
+                        <input type="number" id="form-stock" required min="0" placeholder="25" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Primary Purpose</label>
+                        <input type="text" id="form-purpose" placeholder="e.g. Egg Production / Meat" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Image URL</label>
+                    <input type="url" id="form-image" required placeholder="https://images.unsplash.com/..." class="w-full px-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">Description & Characteristics</label>
+                    <textarea id="form-description" rows="3" required placeholder="Provide details regarding layer capacity, weight, or characteristics..." class="w-full px-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 border-t border-stone-200">
+                    <button type="button" onclick="closeFormModal()" class="px-5 py-2.5 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-xl font-bold text-sm">Cancel</button>
+                    <button type="submit" class="px-6 py-2.5 bg-brand-700 hover:bg-brand-800 text-white rounded-xl font-bold text-sm shadow-md">Save Listing</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-900 text-stone-400 py-8 border-t border-stone-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs">
+            <p>&copy; 2026 FeatherFarm Poultry E-Commerce. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initial Mock Data
+        const initialChickens = [
+            {
+                id: "chk-001",
+                breed: "Rhode Island Red",
+                category: "4-month-old",
+                price: 450,
+                stock: 35,
+                purpose: "Layer / Dual Purpose",
+                image: "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80",
+                description: "Famous for high egg production and hardiness. 4-month pullets close to point-of-lay stage.",
+                vaccine: "Complete",
+                temperament: "Docile / Friendly"
+            },
+            {
+                id: "chk-002",
+                breed: "Barred Plymouth Rock",
+                category: "5-month-old",
+                price: 580,
+                stock: 20,
+                purpose: "Dual Purpose",
+                image: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=800&q=80",
+                description: "Sturdy 5-month heritage breed with distinct black and white barred feathers. Excellent for backyard farms.",
+                vaccine: "Complete",
+                temperament: "Calm"
+            },
+            {
+                id: "chk-003",
+                breed: "Brahma Mature Rooster",
+                category: "6-month-old+",
+                price: 890,
+                stock: 12,
+                purpose: "Breeding / Meat",
+                image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80",
+                description: "Large, majestic 6-month-old rooster. Great structure, feathered legs, and strong breeding lineage.",
+                vaccine: "Complete",
+                temperament: "Gentle Giant"
+            },
+            {
+                id: "chk-004",
+                breed: "Leghorn Point-of-Lay",
+                category: "5-month-old",
+                price: 520,
+                stock: 0,
+                purpose: "High-Yield Egg Layer",
+                image: "https://images.unsplash.com/photo-1563281577-a7be47e20db9?auto=format&fit=crop&w=800&q=80",
+                description: "Active white leghorn pullets known for unmatched white egg laying efficiency.",
+                vaccine: "Complete",
+                temperament: "Active"
+            }
+        ];
+
+        let chickens = [];
+        let currentFilter = 'All';
+        let searchQuery = '';
+
+        function initApp() {
+            const saved = localStorage.getItem('featherfarm_chickens');
+            if (saved) {
+                chickens = JSON.parse(saved);
+            } else {
+                chickens = initialChickens;
+                saveToStorage();
+            }
+            renderStorefront();
+            renderAdminTable();
+            updateAdminStats();
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('featherfarm_chickens', JSON.stringify(chickens));
+        }
+
+        function switchTab(tab) {
+            const storefrontSection = document.getElementById('section-storefront');
+            const adminSection = document.getElementById('section-admin');
+            const navStorefront = document.getElementById('nav-storefront');
+            const navAdmin = document.getElementById('nav-admin');
+
+            if (tab === 'storefront') {
+                storefrontSection.classList.remove('hidden');
+                adminSection.classList.add('hidden');
+                navStorefront.className = "px-4 py-2 rounded-lg font-medium text-sm transition-all bg-brand-800 text-white shadow-inner flex items-center gap-2";
+                navAdmin.className = "px-4 py-2 rounded-lg font-medium text-sm transition-all text-stone-300 hover:text-white hover:bg-brand-800/50 flex items-center gap-2";
+                renderStorefront();
+            } else {
+                storefrontSection.classList.add('hidden');
+                adminSection.classList.remove('hidden');
+                navAdmin.className = "px-4 py-2 rounded-lg font-medium text-sm transition-all bg-brand-800 text-white shadow-inner flex items-center gap-2";
+                navStorefront.className = "px-4 py-2 rounded-lg font-medium text-sm transition-all text-stone-300 hover:text-white hover:bg-brand-800/50 flex items-center gap-2";
+                renderAdminTable();
+                updateAdminStats();
+            }
+        }
+
+        function setCategoryFilter(category) {
+            currentFilter = category;
+            document.querySelectorAll('.category-pill').forEach(pill => {
+                pill.className = "category-pill inactive-pill px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm bg-white text-stone-600 hover:bg-stone-100 border border-stone-200";
+            });
+            
+            const activeBtn = document.getElementById(`filter-${category}`);
+            if (activeBtn) {
+                activeBtn.className = "category-pill active-pill px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm bg-brand-700 text-white";
+            }
+            renderStorefront();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value.toLowerCase();
+            renderStorefront();
+        }
+
+        function renderStorefront() {
+            const grid = document.getElementById('product-grid');
+            const emptyState = document.getElementById('empty-state');
+            grid.innerHTML = '';
+
+            const filtered = chickens.filter(item => {
+                const matchesCategory = (currentFilter === 'All') || (item.category === currentFilter);
+                const matchesSearch = item.breed.toLowerCase().includes(searchQuery) || item.description.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                filtered.forEach(item => {
+                    const isAvailable = item.stock > 0;
+                    grid.innerHTML += `
+                        <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-all">
+                            <div class="relative h-52 bg-stone-100 overflow-hidden">
+                                <img src="${item.image}" alt="${item.breed}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                                <span class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-lg uppercase">
+                                    ${item.category}
+                                </span>
+                                <span class="absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm ${isAvailable ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                                    ${isAvailable ? `${item.stock} Available` : 'Out of Stock'}
+                                </span>
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-black text-lg text-stone-900">${item.breed}</h3>
+                                    <span class="font-extrabold text-amber-600 text-lg">₱${item.price.toLocaleString()}</span>
+                                </div>
+                                <p class="text-stone-500 text-xs line-clamp-2 mb-4 leading-relaxed">${item.description}</p>
+                                <div class="mt-auto pt-4 border-t border-stone-100 flex items-center justify-between">
+                                    <span class="text-xs text-brand-700 font-semibold bg-brand-50 px-2.5 py-1 rounded-md">
+                                        <i class="fa-solid fa-check text-xs"></i> ${item.purpose || 'Farm Breed'}
+                                    </span>
+                                    <button onclick="openDetailModal('${item.id}')" class="text-xs font-bold bg-stone-900 hover:bg-stone-800 text-white px-4 py-2 rounded-xl transition-all">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function renderAdminTable() {
+            const tbody = document.getElementById('admin-table-body');
+            const countTag = document.getElementById('inventory-count-tag');
+            tbody.innerHTML = '';
+            countTag.innerText = `${chickens.length} items`;
+
+            chickens.forEach(item => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-stone-50/80 transition-all">
+                        <td class="py-4 px-6 flex items-center gap-3">
+                            <img src="${item.image}" class="w-10 h-10 rounded-lg object-cover bg-stone-200">
+                            <div>
+                                <span class="font-bold text-stone-900 block">${item.breed}</span>
+                                <span class="text-xs text-stone-400">ID: ${item.id}</span>
+                            </div>
+                        </td>
+                        <td class="py-4 px-6">
+                            <span class="bg-stone-100 text-stone-700 font-semibold text-xs px-2.5 py-1 rounded-md uppercase">
+                                ${item.category}
+                            </span>
+                        </td>
+                        <td class="py-4 px-6 font-bold text-stone-900">₱${Number(item.price).toLocaleString()}</td>
+                        <td class="py-4 px-6">
+                            <span class="font-bold ${item.stock > 0 ? 'text-stone-800' : 'text-rose-600'}">${item.stock} units</span>
+                        </td>
+                        <td class="py-4 px-6 text-right space-x-2">
+                            <button onclick="openEditModal('${item.id}')" class="p-2 text-stone-600 hover:text-brand-700 hover:bg-brand-50 rounded-lg transition-all" title="Edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button onclick="deleteListing('${item.id}')" class="p-2 text-stone-600 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all" title="Delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function updateAdminStats() {
+            document.getElementById('stat-total-listings').innerText = chickens.length;
+            const totalStock = chickens.reduce((acc, curr) => acc + Number(curr.stock), 0);
+            const totalVal = chickens.reduce((acc, curr) => acc + (Number(curr.price) * Number(curr.stock)), 0);
+            document.getElementById('stat-total-stock').innerText = totalStock;
+            document.getElementById('stat-total-value').innerText = `₱${totalVal.toLocaleString()}`;
+        }
+
+        function openDetailModal(id) {
+            const item = chickens.find(c => c.id === id);
+            if (!item) return;
+
+            document.getElementById('modal-img').src = item.image;
+            document.getElementById('modal-breed').innerText = item.breed;
+            document.getElementById('modal-category').innerText = item.category;
+            document.getElementById('modal-price').innerText = `₱${item.price.toLocaleString()}`;
+            document.getElementById('modal-description').innerText = item.description;
+            document.getElementById('modal-purpose').innerText = item.purpose || 'Standard Poultry Breed';
+            document.getElementById('modal-age').innerText = item.category;
+            document.getElementById('modal-vaccine').innerText = item.vaccine || 'Complete';
+            document.getElementById('modal-stock').innerText = `${item.stock} available`;
+            document.getElementById('modal-temperament').innerText = item.temperament || 'Docile';
+
+            const badge = document.getElementById('modal-stock-badge');
+            if (item.stock > 0) {
+                badge.className = "bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md uppercase";
+                badge.innerText = "In Stock";
+            } else {
+                badge.className = "bg-rose-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md uppercase";
+                badge.innerText = "Out of Stock";
+            }
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        function openAddModal() {
+            document.getElementById('form-modal-title').innerText = "Add New Chicken Listing";
+            document.getElementById('chicken-form').reset();
+            document.getElementById('form-id').value = '';
+            document.getElementById('form-modal').classList.remove('hidden');
+        }
+
+        function openEditModal(id) {
+            const item = chickens.find(c => c.id === id);
+            if (!item) return;
+
+            document.getElementById('form-modal-title').innerText = "Edit Chicken Listing";
+            document.getElementById('form-id').value = item.id;
+            document.getElementById('form-breed').value = item.breed;
+            document.getElementById('form-category').value = item.category;
+            document.getElementById('form-price').value = item.price;
+            document.getElementById('form-stock').value = item.stock;
+            document.getElementById('form-purpose').value = item.purpose || '';
+            document.getElementById('form-image').value = item.image;
+            document.getElementById('form-description').value = item.description;
+
+            document.getElementById('form-modal').classList.remove('hidden');
+        }
+
+        function closeFormModal() {
+            document.getElementById('form-modal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const id = document.getElementById('form-id').value;
+            const newObj = {
+                id: id || `chk-${Date.now()}`,
+                breed: document.getElementById('form-breed').value,
+                category: document.getElementById('form-category').value,
+                price: parseFloat(document.getElementById('form-price').value),
+                stock: parseInt(document.getElementById('form-stock').value),
+                purpose: document.getElementById('form-purpose').value,
+                image: document.getElementById('form-image').value,
+                description: document.getElementById('form-description').value,
+                vaccine: 'Complete',
+                temperament: 'Docile'
+            };
+
+            if (id) {
+                const idx = chickens.findIndex(c => c.id === id);
+                if (idx !== -1) chickens[idx] = newObj;
+            } else {
+                chickens.unshift(newObj);
+            }
+
+            saveToStorage();
+            closeFormModal();
+            renderAdminTable();
+            updateAdminStats();
+            renderStorefront();
+        }
+
+        function deleteListing(id) {
+            if (confirm("Are you sure you want to delete this chicken listing?")) {
+                chickens = chickens.filter(c => c.id !== id);
+                saveToStorage();
+                renderAdminTable();
+                updateAdminStats();
+                renderStorefront();
+            }
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
